@@ -1,3 +1,6 @@
+<?php
+	include("connection/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +94,22 @@
 	                </li>
 	            </ul>
 	     </div>
+	</div>
+	<div class="contenido">
+		<form action="insertar_productos.php" method="POST">
+			Producto<input name="insumo" type="text">
+			Unidades<select name="id_unidad" id="">
+			<?php
+				$sql="SELECT * FROM unidades";
+				$rs=mysql_query($sql) or die (mysql_error());
+				while ($row=mysql_fetch_array($rs)) {
+					echo"<option value='".$row["id_unidad"]."'>".$row["unidad"]."</option>";
+				}
+			?>
+			</select>
+			Descripcion<input name="descripcion" type="text">
+			<button class="btn btn-primary" id="ingresar">Agregar</button>
+		</form>
 	</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>

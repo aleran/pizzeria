@@ -1,3 +1,6 @@
+<?php
+	include("connection/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,6 +95,33 @@
 	            </ul>
 	     </div>
 	</div>
+	<div class="contenido">
+	<?php
+		$sql1="SELECT * FROM insumos JOIN unidades ON insumos.id_unidad=unidades.id_unidad WHERE insumos.id_insumo='".$_GET["id_insumo"]."'";
+		$rs1=mysql_query($sql1) or die (mysql_error());
+		$row1=mysql_fetch_array($rs1);
+
+		$sql2="SELECT existencia FROM existencias WHERE id_insumo='".$row1["id_insumo"]."'";
+		$rs2=mysql_query($sql2) or die (mysql_error());
+		$row2=mysql_fetch_array($rs2);
+	?>
+	<form action="mod_productos.php" method="POST">
+		Producto<input name="insumo" type="text" value="<?php echo $row1["insumo"]; ?>">
+		Unidades<select name="id_unidad" id="">
+		<?php
+			$sql="SELECT * FROM unidades";
+			$rs=mysql_query($sql) or die (mysql_error());
+			while ($row=mysql_fetch_array($rs)) {
+				echo"<option value='".$row["id_unidad"]."'>".$row["unidad"]."</option>";
+			}
+			?>
+		</select>
+		Descripcion<input name="descripcion" type="text" value="<?php echo $row1["descripcion"]; ?>">
+		<input type="hidden" name="id_insumo" value="<?php echo $row1["id_insumo"]; ?>">
+		<button  class='btn btn-primary' id='ingresar'>Agregar</button>
+		
+	</form>
+</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

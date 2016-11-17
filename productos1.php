@@ -1,3 +1,6 @@
+<?php
+	include("connection/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,6 +95,30 @@
 	            </ul>
 	     </div>
 	</div>
+	<div class="contenido">
+	<table class="table table-striped">
+  <thead>
+  	<th>Producto</th>
+  	<th>Unidad</th>
+  	<th>Descripcion</th>
+  	<th>Existencias</th>
+  </thead>
+  
+  <tbody>
+  <?php
+	$sql="SELECT * FROM insumos JOIN unidades ON insumos.id_unidad=unidades.id_unidad";
+	$rs=mysql_query($sql) or die (mysql_error());
+	while ($row=mysql_fetch_array($rs)) {
+		$sql1="SELECT existencia FROM existencias WHERE id_insumo='".$row["id_insumo"]."'";
+		$rs1=mysql_query($sql1) or die (mysql_error());
+		$row1=mysql_fetch_array($rs1);
+		echo "<tr><td>"."<a href='modificar_productos.php?id_insumo=".$row["id_insumo"]."'>".$row["insumo"]."</a>"."</td><td>".$row["unidad"]."</td><td>$row[3]</td>"."<td>$row1[0]</td><td><a href='agregar_existencias.php?id_insumo=".$row["id_insumo"]."'><span class='glyphicon glyphicon-plus-sign'></span></a></td><td><a href='retirar_existencias.php?id_insumo=".$row["id_insumo"]."'><span class='glyphicon glyphicon-minus-sign'></span></a></td></tr>";
+	}
+?>
+  	
+  </tbody>
+</table>
+</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

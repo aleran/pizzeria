@@ -1,3 +1,6 @@
+<?php
+	include("connection/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,6 +95,28 @@
 	            </ul>
 	     </div>
 	</div>
+	<div class="contenido">
+	<?php
+		$sql1="SELECT * FROM platos JOIN categorias ON platos.id_categoria=categorias.id_categoria WHERE platos.id_plato='".$_GET["id_plato"]."'";
+		$rs1=mysql_query($sql1) or die (mysql_error());
+		$row1=mysql_fetch_array($rs1);
+	?>
+	<form action="mod_platos.php" method="POST">
+		Plato<input name="plato" type="text" value="<?php echo $row1["plato"]; ?>">
+		Categoria<select name="id_categoria" id="">
+		<?php
+			$sql="SELECT * FROM categorias";
+			$rs=mysql_query($sql) or die (mysql_error());
+			while ($row=mysql_fetch_array($rs)) {
+				echo"<option value='".$row["id_categoria"]."'>".$row["categoria"]."</option>";
+			}
+			?>
+		</select>
+		<input type="hidden" name="id_plato" value="<?php echo $row1["id_plato"]; ?>">
+		<button  class='btn btn-primary' id='ingresar'>Agregar</button>
+		
+	</form>
+</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

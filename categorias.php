@@ -1,3 +1,6 @@
+<?php
+	include("connection/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +94,16 @@
 	                </li>
 	            </ul>
 	     </div>
+	</div>
+	<div class="contenido">
+		<form action="agg_categoria.php" method="POST">
+			Nombre de la categoria<input name="categoria" type="text">
+			<select name="tipo">
+				<option value="1">Comida</option>
+				<option value="2">Bebida</option>
+			</select>
+			<button class="btn btn-primary">Agregar</button>
+		</form>
 	</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>

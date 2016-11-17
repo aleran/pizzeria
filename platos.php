@@ -1,3 +1,6 @@
+<?php
+	include("connection/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,6 +95,27 @@
 	            </ul>
 	     </div>
 	</div>
+	<div class="contenido">
+	<table class="table table-striped">
+  <thead>
+  	<th>Plato</th>
+  	<th>Categoria</th>
+  	<th>Precio</th>
+  </thead>
+  
+  <tbody>
+  <?php
+	$sql="SELECT * FROM platos JOIN categorias ON platos.id_categoria=categorias.id_categoria";
+	$rs=mysql_query($sql) or die (mysql_error());
+	while ($row=mysql_fetch_array($rs)) {
+
+		echo "<tr><td>"."<a href='modificar_platos.php?id_plato=".$row["id_plato"]."'>".$row["plato"]."</a>"."</td><td>".$row["categoria"]."</td><td>"."<a href='modificar_precios.php?id_plato=".$row["id_plato"]."'>".$row["precio"]."</td>"."</tr>";
+	}
+?>
+  	
+  </tbody>
+</table>
+</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -1,3 +1,6 @@
+<?php
+	include("connection/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +94,12 @@
 	                </li>
 	            </ul>
 	     </div>
+	</div>
+	<div class="contenido">
+		<form action="agg_mesas.php" method="POST">
+			Nombre de mesa<input name="mesa" type="text">
+			<button class="btn btn-primary" id="ingresar">Agregar</button>
+		</form>
 	</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>

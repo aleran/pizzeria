@@ -1,3 +1,6 @@
+<?php
+	include("connection/connection.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,6 +95,21 @@
 	            </ul>
 	     </div>
 	</div>
+	<div class="contenido">
+	<?php
+		$sql1="SELECT * FROM platos WHERE id_plato='".$_GET["id_plato"]."'";
+		$rs1=mysql_query($sql1) or die (mysql_error());
+		$row1=mysql_fetch_array($rs1);
+	?>
+	<form action="mod_precios.php" method="POST">
+		Plato<?php echo $row1["plato"]; ?>
+		Precio <input type="text" name="precio" value="<?php echo $row1["precio"]; ?>">	
+		
+		<input type="hidden" name="id_plato" value="<?php echo $row1["id_plato"]; ?>">
+		<button  class='btn btn-primary' id='ingresar'>Agregar</button>
+		
+	</form>
+</div>
 
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
