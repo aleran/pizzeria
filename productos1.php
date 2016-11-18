@@ -15,18 +15,14 @@
 	<header>
 		<img src="img/pizzeria1.jpg" alt="">
 	</header>
-	<div class="nav-side-menu">
-	    <div class="brand">Brand Logo</div>
+		<div class="nav-side-menu">
+	    <div class="brand">Pizzeria</div>
 	    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 	  
 	        <div class="menu-list">
 	  
 	            <ul id="menu-content" class="menu-content collapse out">
-	                <li>
-	                  <a href="#">
-	                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
-	                  </a>
-	                </li>
+	                
 
 	                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
 	                  <a href="#"><i class="fa fa-gift fa-lg"></i> Caja <span class="arrow"></span></a>
@@ -35,13 +31,6 @@
 	                    <li class="active"><a href="#">CSS3 Animation</a></li>
 	                    <li><a href="#">Registrar Pedido</a></li>
 	                    <li><a href="#">Ver Pedidos</a></li>
-	                    <li><a href="#">Tabs & Accordions</a></li>
-	                    <li><a href="#">Typography</a></li>
-	                    <li><a href="#">FontAwesome</a></li>
-	                    <li><a href="#">Slider</a></li>
-	                    <li><a href="#">Panels</a></li>
-	                    <li><a href="#">Widgets</a></li>
-	                    <li><a href="#">Bootstrap Model</a></li>
 	                </ul>
 
 
@@ -49,38 +38,29 @@
 	                  <a href="#"><i class="fa fa-car fa-lg"></i> Productos <span class="arrow"></span></a>
 	                </li>
 	                <ul class="sub-menu collapse" id="new">
-	                  <li>Registrar Producto</li>
-	                  <li>Ver Productos</li>
-	                  <li>New New 3</li>
+	                  <li><a href="productos1.php">Listado de Productos</a></li>
 	                </ul>
 
 					
-					 <li data-toggle="collapse" data-target="#new" class="collapsed">
+					 <li data-toggle="collapse" data-target="#categorias" class="collapsed">
 	                  <a href="#"><i class="fa fa-car fa-lg"></i> Categorias <span class="arrow"></span></a>
 	                </li>
-	                <ul class="sub-menu collapse" id="new">
-	                  <li>Registrar Categoria</li>
-	                  <li>Ver Categorias</li>
-	                  <li>New New 3</li>
-	                </ul>
-
-	                 <li data-toggle="collapse" data-target="#new" class="collapsed">
-	                  <a href="#"><i class="fa fa-car fa-lg"></i> Platos <span class="arrow"></span></a>
-	                </li>
-	                <ul class="sub-menu collapse" id="new">
-	                  <li>Registrar Plato</li>
-	                  <li>Ver Platos</li>
+	                <ul class="sub-menu collapse" id="categorias">
+	                  <li><a href="categorias.php">Crear Categoria</a></li>
 	                </ul>
 					
 					<li data-toggle="collapse" data-target="#service" class="collapsed">
-	                  <a href="#"><i class="fa fa-globe fa-lg"></i> Deposito <span class="arrow"></span></a>
+	                  <a href="#"><i class="fa fa-globe fa-lg"></i> Platos <span class="arrow"></span></a>
 	                </li>  
 	                <ul class="sub-menu collapse" id="service">
-	                  <li>Entrada de Inventario</li>
-	                  <li>Salida de Inventario</li>
-	                  <li>Consultas</li>
+	                  <li><a href="platos.php">Listado de platos</a></li>
 	                </ul>
-
+					
+					<li>
+	                  <a href="mesas.php">
+	                  <i class="fa fa-user fa-lg"></i> Mesas
+	                  </a>
+	                  </li>
 	                 <li>
 	                  <a href="#">
 	                  <i class="fa fa-user fa-lg"></i> Consulta de Ventas
@@ -89,13 +69,53 @@
 
 	                 <li>
 	                  <a href="#">
-	                  <i class="fa fa-users fa-lg"></i> Users
+	                  <i class="fa fa-users fa-lg"></i> Consulta de Inventario
 	                  </a>
 	                </li>
 	            </ul>
 	     </div>
 	</div>
 	<div class="contenido">
+
+	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Agregar Producto
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+      </div>
+      <div class="modal-body">
+       <form action="insertar_productos.php" method="POST">
+       <center>
+			Producto: <input name="insumo" type="text"><br><br>
+			Unidades: <select name="id_unidad" id=""><br><br>
+			<?php
+				$sql="SELECT * FROM unidades";
+				$rs=mysql_query($sql) or die (mysql_error());
+				while ($row=mysql_fetch_array($rs)) {
+					echo"<option value='".$row["id_unidad"]."'>".$row["unidad"]."</option>";
+				}
+			?>
+			</select><br><br>
+			Descripcion: <input name="descripcion" type="text">
+			
+		</center>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" id="ingresar">Agregar</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<table class="table table-striped">
   <thead>
   	<th>Producto</th>

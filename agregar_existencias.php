@@ -15,18 +15,14 @@
 	<header>
 		<img src="img/pizzeria1.jpg" alt="">
 	</header>
-	<div class="nav-side-menu">
-	    <div class="brand">Brand Logo</div>
+		<div class="nav-side-menu">
+	    <div class="brand">Pizzeria</div>
 	    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 	  
 	        <div class="menu-list">
 	  
 	            <ul id="menu-content" class="menu-content collapse out">
-	                <li>
-	                  <a href="#">
-	                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
-	                  </a>
-	                </li>
+	                
 
 	                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
 	                  <a href="#"><i class="fa fa-gift fa-lg"></i> Caja <span class="arrow"></span></a>
@@ -35,13 +31,6 @@
 	                    <li class="active"><a href="#">CSS3 Animation</a></li>
 	                    <li><a href="#">Registrar Pedido</a></li>
 	                    <li><a href="#">Ver Pedidos</a></li>
-	                    <li><a href="#">Tabs & Accordions</a></li>
-	                    <li><a href="#">Typography</a></li>
-	                    <li><a href="#">FontAwesome</a></li>
-	                    <li><a href="#">Slider</a></li>
-	                    <li><a href="#">Panels</a></li>
-	                    <li><a href="#">Widgets</a></li>
-	                    <li><a href="#">Bootstrap Model</a></li>
 	                </ul>
 
 
@@ -49,38 +38,29 @@
 	                  <a href="#"><i class="fa fa-car fa-lg"></i> Productos <span class="arrow"></span></a>
 	                </li>
 	                <ul class="sub-menu collapse" id="new">
-	                  <li>Registrar Producto</li>
-	                  <li>Ver Productos</li>
-	                  <li>New New 3</li>
+	                  <li><a href="productos1.php">Listado de Productos</a></li>
 	                </ul>
 
 					
-					 <li data-toggle="collapse" data-target="#new" class="collapsed">
+					 <li data-toggle="collapse" data-target="#categorias" class="collapsed">
 	                  <a href="#"><i class="fa fa-car fa-lg"></i> Categorias <span class="arrow"></span></a>
 	                </li>
-	                <ul class="sub-menu collapse" id="new">
-	                  <li>Registrar Categoria</li>
-	                  <li>Ver Categorias</li>
-	                  <li>New New 3</li>
-	                </ul>
-
-	                 <li data-toggle="collapse" data-target="#new" class="collapsed">
-	                  <a href="#"><i class="fa fa-car fa-lg"></i> Platos <span class="arrow"></span></a>
-	                </li>
-	                <ul class="sub-menu collapse" id="new">
-	                  <li>Registrar Plato</li>
-	                  <li>Ver Platos</li>
+	                <ul class="sub-menu collapse" id="categorias">
+	                  <li><a href="categorias.php">Crear Categoria</a></li>
 	                </ul>
 					
 					<li data-toggle="collapse" data-target="#service" class="collapsed">
-	                  <a href="#"><i class="fa fa-globe fa-lg"></i> Deposito <span class="arrow"></span></a>
+	                  <a href="#"><i class="fa fa-globe fa-lg"></i> Platos <span class="arrow"></span></a>
 	                </li>  
 	                <ul class="sub-menu collapse" id="service">
-	                  <li>Entrada de Inventario</li>
-	                  <li>Salida de Inventario</li>
-	                  <li>Consultas</li>
+	                  <li><a href="platos.php">Listado de platos</a></li>
 	                </ul>
-
+					
+					<li>
+	                  <a href="mesas.php">
+	                  <i class="fa fa-user fa-lg"></i> Mesas
+	                  </a>
+	                  </li>
 	                 <li>
 	                  <a href="#">
 	                  <i class="fa fa-user fa-lg"></i> Consulta de Ventas
@@ -89,7 +69,7 @@
 
 	                 <li>
 	                  <a href="#">
-	                  <i class="fa fa-users fa-lg"></i> Users
+	                  <i class="fa fa-users fa-lg"></i> Consulta de Inventario
 	                  </a>
 	                </li>
 	            </ul>
@@ -108,12 +88,12 @@
 
 	?>
 	
-		Producto <?php echo $row1["insumo"]; ?>
-		Unidades <?php echo $row1["unidad"]; ?>
-		Descripcion<?php echo $row1["descripcion"]; ?>
-		Existencias <?php echo $row2["existencia"]; ?>
+		Producto: <?php echo $row1["insumo"]; ?><br>
+		Unidades: <?php echo $row1["unidad"]; ?><br>
+		Descripcion:<?php echo $row1["descripcion"]; ?><br>
+		Existencias: <?php echo $row2["existencia"]; ?>
 		<form action="agg_existencias.php" method="POST">
-			Agregar<input name="cantidad" type="text">
+			Cantidad<input name="cantidad" type="text">
 			<input type="hidden" name="id_insumo" value="<?php echo $row1["id_insumo"]; ?>">
 			<button class='btn btn-primary'>Agregar</button>
 		</form>
